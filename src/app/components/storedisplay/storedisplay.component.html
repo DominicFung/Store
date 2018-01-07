@@ -1,0 +1,115 @@
+<div class="outer-starter-background"></div>
+
+<div *ngIf="storeData | async as s" class="container relative-main">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 store-panel" *ngFor="let item of s.items" id={{item._id}}>
+        
+        <div class="pull-right clearfix admin-hover" *ngIf="admin | async as a">
+            <button *ngIf="a.userID" type="button" class="btn btn-sm adm-btn" (click)="edit(item._id, item.itemName, item.price, item.inventory, item.description, item.coverImg)">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>
+            <button *ngIf="a.userID" type="button" class="btn btn-sm adm-btn" (click)="delete(item._id)" style="margin-right:10px;">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="outer-img-panel">
+            <div class="float-btn">
+                <button type="button" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="btn btn-default btn-discover" routerLink="/store/{{item._id}}">Discover</button><br>
+                <button type="button" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="btn btn-primary btn-add-cart" (click)="addToCart(item._id)">Add to Cart</button>
+            </div>
+            <img *ngIf="item.coverImg" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{item.coverImg}}" alt="{{item.coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
+            <img *ngIf="!item.coverImg" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="store-img" src="assets/imgs/noImageFound.jpeg" alt="no Image found!">
+        </div>
+
+        <div class="row" style="margin:0px;">
+            <div class="relative-badge pull-right"><span class="badge">{{Cart[item._id]}}</span></div>
+            <button class="btn btn-default pull-right like-heart" (click)="toggleLike(item._id)"><i class="glyphicon glyphicon-heart {{ Likes[item._id] ? 'redHeart':'' }}"></i></button>
+
+            <div class="pull-left panel-info-style">
+                <h6 class="panel-title-font">{{item.itemName}}</h6>
+                <span class="panel-price-font">{{item.price}} CAD</span>
+            </div>
+        </div>
+
+        <div class="bottom-underline"></div>
+    </div>
+</div>
+
+<!-- ADMIN EDIT BUTTON -->
+<div *ngIf="admin | async as a" style="position:relative; z-index:1000;">
+    <button *ngIf="a.userID" type="button" class="btn btn-primary btn-circle btn-lg btn-rightCorner-absolute" data-toggle="modal" data-target="#newItemModal">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</div>
+
+<!-- ADMIN EDIT MODAL -->
+<div id="newItemModal" *ngIf="admin | async as a" class="modal fade" role="dialog">
+    <div *ngIf="a.userID" class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" style="margin-right:8px;" (click)="reset(true)"><i class='glyphicon glyphicon-remove' style="font-size: 12px;"></i></button>
+            <button type="button" class="close" data-dismiss="modal" style="margin-right:8px;"><i class='glyphicon glyphicon-minus' style="font-size: 12px;"></i></button>
+            <h4 *ngIf="!itemID" class="modal-title">New Product</h4>
+            <h4 *ngIf="itemID" class="modal-title">Product: {{itemID}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form [formGroup]="rForm" id="ngForm" #documentEditForm="ngForm"> 
+
+                <div class="form-row">
+                    <label class="col-form-label">Name</label>
+                    <input class="form-control" type="text" formControlName="product_name">
+                </div> <br>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label class="col-form-label">Inventory</label>
+                        <div class="input-group number-spinner">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="removeInventory()"><span class="glyphicon glyphicon-minus"></span></button>
+                            </span>
+                            <input type="number" class="form-control text-center noNumSpin" formControlName="inventory" [(ngModel)]="inventory">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="addInventory()"><span class="glyphicon glyphicon-plus"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-form-label">Price</label>
+                        <input type="number" min="0" class="form-control noNumSpin" formControlName="price">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="col-form-label">Currency</label>
+                        <select class="form-control">
+                            <option>CND</option>
+                            <option>USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+
+                <dropzone *ngIf="!coverPic" class="DomStyle" [config]="config" name="photo" [message]="'Click or drag images here'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+                <div *ngIf="coverPic" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverPic}}" alt="{{coverPic}}"></div></div>
+                <!-- <form method="post" enctype="multipart/form-data" action="/api/upload"> -->
+                <!-- <input type="file" name="filename">
+                <input type="submit" value="upload"> -->
+
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="!itemID" type="button" class="btn btn-primary add-update-btn" (click)="submitItem()" [disabled]="!documentEditForm.form.valid">Add</button>
+            <button *ngIf="itemID" type="button" class="btn btn-primary add-update-btn" (click)="submitItem()" [disabled]="!documentEditForm.form.valid">Update</button>
+            <button type="button" class="btn btn-default" (click)="reset(true)" data-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+
+    </div>
+</div>

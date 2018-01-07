@@ -1,0 +1,53 @@
+.dontShow {
+    display: none;
+}
+
+/* -- background top gradient --*/
+
+.outer-starter-background {
+    background: #c6b3bf;
+    background: -webkit-linear-gradient(#c6b3bf 20%, white);  /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#c6b3bf 20%, white);       /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#c6b3bf 20%, white);     /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#c6b3bf 20%, white);          /* Standard syntax */
+
+    width: 100%;
+    padding-top: 400px;
+}
+
+.relative-main {
+    position: relative;
+    top: -270px;
+}
+/* -- background top gradient --*/
+
+.product_title {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.product_listing .btn {
+    background: transparent;
+    border: transparent;
+}
+
+.small-price-num {
+    padding-top: 12px;
+}
+
+.checkout-btn {
+    border-radius: 25px;
+    border-style: none;
+    background-color: #15224f;
+    font-family: "Patua One";
+    width: 150px;
+
+    margin: 0px;
+}
+
+.checkout-btn:active {
+    background-color: #071233;
+    color: #c6b3bf;
+}
+

@@ -1,0 +1,175 @@
+.container {
+    width: 100%;
+}
+
+.item-info {
+    min-height: 90%;
+    min-height: -webkit-calc(100% - 50px);
+    min-height: -moz-calc(100% - 50px);
+    min-height: calc(100% - 50px);
+}
+
+.item-info .row {
+    width: 100%;
+    padding: 0px;
+}
+
+.store-img {
+    border-radius: 25px;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+.item-info h1{
+    font-family: 'Patua One';
+}
+
+/*!!!   !   Add/remove cart   !   !!!*/
+.btn {
+    font-family: 'Patua One';
+    font-size: 15px;
+
+    size: 18px;
+    border-radius: 18px;
+    border-style: solid;
+    border-width: 1px;
+
+    transition: all 0.1s;
+}
+
+.btn.add-to-cart {
+    background-color: #15224f;
+    border-width: 3px;
+    border-color: #15224f;
+    color: white;
+    width: 135px;
+}
+
+.btn.add-to-cart:hover {
+    background-color: #6d5272;
+    border-color: #6d5272;
+}
+
+.btn.remove-from {
+    color: #15224f;
+    background-color: transparent;
+    border-width: 3px;
+    border-color: #15224f;
+    width: 85px;
+}
+
+.btn.remove-from:hover {
+    color: #6d5272;
+    border-color: #6d5272;
+}
+
+.btn.remove-from:disabled {
+    cursor: default;
+}
+/*!!!   !   Add/remove cart   !   !!!*/
+
+/* ~~~~~~~~~~ price/stock text ~~~~~~~~~~ */
+.price-style {
+    position: relative;
+    padding-left: 20px;
+    font-family: 'Patua One';
+    font-size: 20px;
+    top: 4px;
+}
+
+.stock-style {
+    position: relative;
+    top: 13px;
+
+    font-family: 'Patua One';
+    padding-left: 30px;
+    font-style: italic;
+    color: green;
+    font-size: 13px;
+}
+
+.stock-style b {
+    font-style: normal;
+}
+
+/* ~~~~~~~~~~ price/stock text ~~~~~~~~~~ */
+
+/* - - - - - - - Heart - - - - - - - */
+.like-heart {
+    font-size: 28px;
+    color: #777;
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: none;
+    background: transparent;
+
+    transition: 0.2s all;
+}
+
+.redHeart {
+    color: red;
+}
+
+.redHeart:hover {
+    color: red;
+}
+
+.like-heart:hover {
+    color: #e7e7e7;
+    text-shadow: 0 0 3px #6d5272;
+}
+
+.like-heart:active {
+    background: transparent;
+    font-size: 25px;
+    border: none;
+    
+    box-shadow: none;
+    transform: translateY(1px);
+}
+/* - - - - - - - Heart - - - - - - - */
+
+.description-style {
+    min-height: 60px;
+    padding-bottom: 20px;
+}
+
+/* ---- admin new post button ----*/
+.btn-rightCorner-absolute{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+.noNumSpin,
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+.noNumSpin,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ---- admin new post button ----*/
+
+.DomStyle { top: 30px; }
+
+.store-img {
+    width:100%; 
+    height:auto;
+    opacity: 1;
+}

@@ -1,0 +1,82 @@
+<div class="outer-starter-background"></div>
+<div class="container relative-main">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+          <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                  <address>
+                      <strong style="font-family:'Patua One'; font-size:18px;">DOM+</strong>
+                      <br>
+                      123 Sunset Blvd
+                      <br>
+                      Toronto, CANADA
+                      <br>
+                      <abbr title="Phone"><i class="glyphicon glyphicon-phone-alt"></i></abbr>&nbsp; (213) 123-4567
+                  </address>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                  <b><span [innerHTML]="getDateString()"></span></b><br>
+                  <em><b>Receipt</b>: 34522677W</em>
+              </div>
+          </div>
+          <div class="row">
+              <div class="text-center">
+                  <h1 style="font-family:'Patua One';">Receipt</h1>
+              </div>
+              <table *ngIf="storeData | async as s" class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product</th>
+                          <th class="text-center">Quantity</th>
+                          <th class="text-center">Price</th>
+                          <th class="text-center">Total</th>
+                      </tr>
+                  </thead>
+                  <tbody class="product_listing">
+                      <tr *ngFor="let item of s.items" class="{{ !Cart[item._id] || Cart[item._id] == 0 ? 'dontShow':'' }}">
+                          <td class="col-md-8 row">
+                            <button type="button" class="btn btn-default" (click)="deleteFromCart(item._id)">&times;</button>
+                            <span class="product_title">{{item.itemName}}</span>
+                          </td>
+                          <td class="col-md-2 row" style="text-align: center">
+                                <button type="button" class="btn btn-default" (click)="removeFromCart(item._id)"><span class="glyphicon glyphicon-minus"></span></button>
+                                <span>{{Cart[item._id]}}</span>
+                                <button type="button" class="btn btn-default" (click)="addToCart(item._id)"><span class="glyphicon glyphicon-plus"></span></button>
+                          </td>
+                          <td class="col-md-1 text-center small-price-num"><span>{{item.price}}</span></td>
+                          <td class="col-md-1 text-center small-price-num"><span>{{item.price * Cart[item._id]}}</span></td>
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td class="text-right">
+                          <p>
+                              <strong>Subtotal: </strong>
+                          </p>
+                          <p>
+                              <strong>Tax: </strong>
+                          </p></td>
+                          <td class="text-center">
+                          <p>
+                              <strong>${{getTotal(s.items) | number:'1.1-2'}}</strong>
+                          </p>
+                          <p>
+                              <strong>${{getTotal(s.items) * 0.13 | number:'1.1-2'}}</strong>
+                          </p></td>
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                          <td class="text-center text-danger"><h4><strong>${{getTotal(s.items) * 1.13 | number:'1.1-2'}}</strong></h4></td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="text-center">
+              <button type="button" class="btn btn-success btn-lg checkout-btn">
+                  Checkout  <span class="glyphicon glyphicon-shopping-cart"></span>
+              </button>
+              </div>
+          </div>
+      </div>
+  </div>

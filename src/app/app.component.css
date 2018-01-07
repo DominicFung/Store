@@ -1,0 +1,208 @@
+*:focus {outline:none !important}
+
+.navbar {
+    transition: all 2s;
+}
+
+.navbar a {
+    transition: all 2s;
+}
+
+.navbar .active {
+    transition: all 2s;
+}
+
+.navbar .add-margin-bottom {
+    margin-bottom: +3px;
+}
+
+.navbar-brand {
+    font-family: 'Patua One';
+    font-size: 2.5em;
+    transition: all 2s;
+}
+
+.navbar-default .form-control {
+    border-radius: 15px 0px 0px 15px;
+    border-right: transparent;
+    transition: all 2s;
+}
+
+/*for search button*/
+#nav-full.navbar-default .btn {
+    border-radius: 0px 15px 15px 0px;
+    border-left: transparent;
+    transition: all 2s;
+}
+
+#nav-minimzed.navbar-default .mini-search {
+    border: none;
+    background-color: transparent;
+    
+    margin-bottom: 0px;
+    margin-right: 8px;
+    padding: 8px 6px 8px 6px;
+}
+
+#nav-full.navbar-default .glyphicon-shopping-cart {
+    font-size: 1.3em;
+    z-index: -5;
+}
+
+.navbar-default .badge {
+    background-color: #6d5272;
+    z-index: 5;
+    margin-left: -5px;
+    margin-bottom: -5px;
+}
+
+.active-cart {
+    color: #6d5272;
+}
+
+
+/* ________ search dropdown css ________ */
+
+.dropdown-content {
+    width: 230px;
+}
+
+.dropdown .show-dropdown-content {
+    display: block;
+}
+
+.input-group.dropdown a.search-bar-focus {
+    color: #333;
+}
+
+a.search-item {
+    margin:0px;
+    padding: 10px;
+}
+
+a.search-item div {
+    margin: 0px;
+    padding: 0px;
+}
+
+a.search-item div:hover {
+    background-color: #e7e7e7;
+}
+
+.search-item .search-item-title {
+    font-family: 'Patua One';
+    font-size: 15px;
+}
+
+.search-item .search-item-price {
+    font-size: 10px;
+    vertical-align: auto;
+}
+
+
+/* ------- transparent nav bar -------- */
+.nav-transparent {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.nav-transparent .navbar-brand{
+    color: white;
+    opacity: 0.8;
+}
+
+.nav-transparent a {
+    color: white;
+    background-color: transparent;
+    opacity: 0.8;
+}
+
+.nav-transparent b {
+    color: #AD91A3;
+}
+
+.nav-transparent a:hover {
+    color: white;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.nav-transparent .active {
+    font-weight: bold;
+}
+
+.nav-transparent .navbar-form .form-control { opacity: 0.8; }
+.nav-transparent .navbar-form .btn { opacity: 0.8; }
+
+/* ------- transparent nav bar -------- */
+
+/* --------- visible nav bar -----------*/
+.nav-visible {
+    background-color: #f8f8f8 !important;
+    border-color: #e7e7e7 !important;
+}
+
+.nav-visible .navbar-brand {
+    color: #777;
+    opacity: 1;
+}
+
+.nav-visible b {
+    color: #6d5272;
+}
+
+.nav-visible a {
+    color: #777;
+    opacity: 1;
+}
+
+.nav-visible a:hover {
+    color: #555;
+    opacity: 1;
+}
+
+.nav-visible .active {
+    background-color: #e7e7e7;
+    color: #555;
+}
+/* --------- visible nav bar -----------*/
+
+
+#nav-full { display: none }
+#nav-minimzed {display: block}
+
+@media only screen and (min-width: 768px){
+    #nav-full { display: block }
+    #nav-minimzed {display: none}
+}
+
+
+
+
+
+/* --- || footer || --- */
+
+.footer-bottom {
+    background-color: #6d5272;
+    min-height: 30px;
+    width: 100%;
+
+    position: relative;
+    bottom: 0;
+}
+.copyright {
+    color: #fff;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 7px 0;
+}
+.design {
+    color: #fff;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 7px 0;
+    text-align: right;
+}
+.design a {
+    color: #fff;
+}

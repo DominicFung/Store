@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+*:focus {outline:none !important}
+
+/* ---- DROPZONE OVERRIDE ---- */
+
+.dz-text {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    transform: translateY(0%) !important;
+}
+
+div.dz-preview .dz-image img {
+    display: block;
+    margin: auto;
+    width: 80%;
+    border-radius: 25px;
+}
+
+div.dz-preview .dz-image {
+    border-radius: 25px !important;
+}
+
+div.dz-preview .dz-image:hover {
+    border-radius: 25px !important;
+}
+
+/* ---- DROPZONE OVERRIDE ---- */
+
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 90%;
+    min-height: -webkit-calc(100% - 150px);
+    min-height: -moz-calc(100% - 150px);
+    min-height: calc(100% - 150px);
+}
+
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.addBlue {
+    color: #15224f;
+}

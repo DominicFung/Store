@@ -1,0 +1,209 @@
+*:disabled {
+    cursor: default;
+}
+
+/* !!!!   DropZone CSS cannot be overridden here! go index.html*/
+.DomStyle { top: 30px; }
+
+.store-img {
+    width:100%; 
+    height:auto;
+    opacity: 1;
+}
+
+/* ---- panel css ---- */
+
+.store-panel {
+    margin: 10px 0px;
+}
+
+.adm-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+
+    font-size: 20px;
+}
+
+.relative-badge {
+    position: relative;
+    z-index: 200;
+    height: 0px;
+    top: -5px;
+    right: -5px;
+}
+
+.relative-badge .badge {
+    font-size: 12px;
+    background: #6d5272;
+}
+
+.outer-img-panel img {
+
+    -webkit-transition: all 0.5s;
+    -moz-transition:    all 0.5s;
+    -o-transition:      all 0.5s;
+    -ms-transition:     all 0.5s;
+    transition:         all 0.5s;
+
+    border-radius: 20px 20px 0px 0px;
+
+}
+
+.outer-img-panel img.img-hover {
+    filter:         blur(1.5px) brightness(60%);
+    -webkit-filter: blur(1.5px) brightness(60%);
+}
+
+.outer-img-panel .btn {
+    font-family: 'Patua One';
+    color: white;
+    font-size: 20px;
+
+    border-radius: 18px;
+    border-style: solid;
+    border-width: 1px;
+    width: 160px;
+
+    margin: 10px 0px;
+
+    background-color: transparent;
+    border-color: white;
+    opacity: 0;
+
+    -webkit-transition: all 0.2s;
+    -moz-transition:    all 0.2s;
+    -o-transition:      all 0.2s;
+    -ms-transition:     all 0.2s;
+    transition:         all 0.2s;
+}
+
+.outer-img-panel .btn-visible {
+    opacity: 1 !important;
+}
+
+.float-btn {
+    position: relative;
+    z-index: 100;
+    top: 100px;
+    height: 0px;
+
+    text-align: center;
+}
+
+.panel-info-style {
+    margin: 5px 20px;
+    font-family: 'Patua One';
+}
+
+.panel-title-font {
+    margin: 0px;
+    font-family: 'Patua One';
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.like-heart {
+    font-size: 28px;
+    color: #777;
+    margin: 5px 20px 0px;
+    padding-bottom: 0px;
+    border: none;
+    background: transparent;
+
+    transition: 0.2s all;
+}
+
+.redHeart {
+    color: red;
+}
+
+.redHeart:hover {
+    color: red;
+}
+
+.like-heart:hover {
+    color: #e7e7e7;
+    text-shadow: 0 0 3px #6d5272;
+}
+
+.like-heart:active {
+    background: transparent;
+    font-size: 25px;
+    border: none;
+    
+    box-shadow: none;
+    transform: translateY(1px);
+}
+
+.bottom-underline {
+    position: relative;
+    padding: 0px 20px;
+    z-index: 200;
+    height: 20px;
+
+    border-bottom: 2px solid;
+    border-bottom-color: #777;
+    border-radius: 20px;
+}
+
+/* -- background top gradient --*/
+
+.outer-starter-background {
+    background: #c6b3bf;
+    background: -webkit-linear-gradient(#c6b3bf 20%, white);  /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#c6b3bf 20%, white);       /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#c6b3bf 20%, white);     /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#c6b3bf 20%, white);          /* Standard syntax */
+
+    width: 100%;
+    padding-top: 400px;
+}
+
+.relative-main {
+    position: relative;
+    top: -270px;
+}
+
+/* ---- admin edit buttons ---- */
+
+.admin-hover {
+    position: relative;
+    height: 0px;
+    z-index: 100;
+}
+
+/* ---- admin edit buttons ---- */
+
+
+/* ---- admin new post button ----*/
+.btn-rightCorner-absolute{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+.noNumSpin,
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+.noNumSpin,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ---- admin new post button ----*/

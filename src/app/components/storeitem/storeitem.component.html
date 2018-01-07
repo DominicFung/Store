@@ -1,0 +1,111 @@
+<h1>storeitem works!</h1>
+
+<div class="container item-info">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-6 col-lg-5 col-xl-4">
+            <img *ngIf="coverImg" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverImg}}" alt="{{coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
+            <img *ngIf="!coverImg" class="store-img" src="assets/imgs/noImageFound.jpeg" alt="no Image found!">
+        </div>
+        <div class="col-md-4 col-lg-5 col-xl-6">
+            <h1>{{itemName}}
+                <button class="btn btn-default like-heart" (click)="toggleLike()"><i class="glyphicon glyphicon-heart {{ Likes[itemID] ? 'redHeart':'' }}"></i></button>
+                <!--<span class="glyphicon glyphicon-shopping-cart"></span><span>: {{Cart[itemID] ? Cart[itemID]:0}}</span> -->
+            </h1>
+            
+            <p class="description-style">{{description}}</p>
+
+            <div class="row" style="padding-left: 20px;">
+                <button class="btn btn-primary add-to-cart" (click)="addToCart()">
+                    <span>Add to Cart&nbsp;</span>
+                    <span class="StoreBadge badge">{{Cart[itemID] ? Cart[itemID]:0}}</span>
+                </button>
+                <button class="btn btn-default remove-from" (click)="removeFromCart()" [disabled]="!Cart[itemID]"><span>Remove</span></button>
+                <span class="price-style">{{price}} <b>CAN</b></span>
+                <span class="stock-style pull-right"><b>in Stock </b>{{inventory}}</span>
+            </div>
+            <!--<div class="row" style="margin:0px">
+                <span class="stock-style">in Stock <b>{{inventory}}</b></span>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<!-- ADMIN EDIT BUTTON -->
+<div *ngIf="admin | async as a" style="position:relative; z-index:1000;">
+    <button *ngIf="a.userID" type="button" class="btn btn-primary btn-circle btn-lg btn-rightCorner-absolute" (click)="edit()">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    </button>
+</div>
+
+<!-- ADMIN EDIT MODAL -->
+<div id="newItemModal" *ngIf="admin | async as a" class="modal fade" role="dialog">
+    <div *ngIf="a.userID" class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" style="margin-right:8px;" (click)="reset(true)"><i class='glyphicon glyphicon-remove' style="font-size: 12px;"></i></button>
+            <button type="button" class="close" data-dismiss="modal" style="margin-right:8px;"><i class='glyphicon glyphicon-minus' style="font-size: 12px;"></i></button>
+            <h4 *ngIf="!itemID" class="modal-title">New Product</h4>
+            <h4 *ngIf="itemID" class="modal-title">Product: {{itemID}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+            <form [formGroup]="rForm" id="ngForm" #documentEditForm="ngForm"> 
+
+                <div class="form-row">
+                    <label class="col-form-label">Name</label>
+                    <input class="form-control" type="text" formControlName="product_name">
+                </div> <br>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label class="col-form-label">Inventory</label>
+                        <div class="input-group number-spinner">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="removeInventory()"><span class="glyphicon glyphicon-minus"></span></button>
+                            </span>
+                            <input type="number" class="form-control text-center noNumSpin" formControlName="inventory" [(ngModel)]="inventory">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="addInventory()"><span class="glyphicon glyphicon-plus"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-form-label">Price</label>
+                        <input type="number" min="0" class="form-control noNumSpin" formControlName="price">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="col-form-label">Currency</label>
+                        <select class="form-control">
+                            <option>CND</option>
+                            <option>USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+
+                <dropzone *ngIf="!coverImg" class="DomStyle" [config]="config" name="photo" [message]="'Click or drag images here'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+                <div *ngIf="coverImg" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverImg}}" alt="{{coverImg}}"></div></div>
+                <!-- <form method="post" enctype="multipart/form-data" action="/api/upload"> -->
+                <!-- <input type="file" name="filename">
+                <input type="submit" value="upload"> -->
+
+            </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="!itemID" type="button" class="btn btn-primary" (click)="submitItem()" [disabled]="!documentEditForm.form.valid">Add</button>
+            <button *ngIf="itemID" type="button" class="btn btn-primary" (click)="submitItem()" [disabled]="!documentEditForm.form.valid">Update</button>
+            <button type="button" class="btn btn-default" (click)="reset(true)" data-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+
+    </div>
+</div>
