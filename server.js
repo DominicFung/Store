@@ -67,4 +67,11 @@ app.listen(_port, function() {
 })
 
 // mongod --dbpath d:\mongodata\db --port 27017
-//https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
+//https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html              -- install putty and use aws ec2 t2mirco server
+//https://docs.mongodb.com/manual/tutorial/install-mongodb-on-amazon/         -- install mongodb on that server
+
+//aws s3 cp --recursive s3://domnicfung-storecode /opt/Store
+
+// aws s3 cp --recursive s3://domnicfung-storecode/src/app /opt/Store/src/app
+// node server |& tee -a ./log/server.log
+// ng build
