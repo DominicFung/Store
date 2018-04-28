@@ -3,7 +3,7 @@
 <div class="container item-info">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-6 col-lg-5 col-xl-4">
-            <img *ngIf="coverImg" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverImg}}" alt="{{coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
+            <img *ngIf="coverImg" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset3/{{coverImg}}" alt="{{coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
             <img *ngIf="!coverImg" class="store-img" src="assets/imgs/noImageFound.jpeg" alt="no Image found!">
         </div>
         <div class="col-md-4 col-lg-5 col-xl-6">
@@ -92,7 +92,7 @@
                 </div>
 
                 <dropzone *ngIf="!coverImg" class="DomStyle" [config]="config" name="photo" [message]="'Click or drag images here'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
-                <div *ngIf="coverImg" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverImg}}" alt="{{coverImg}}"></div></div>
+                <div *ngIf="coverImg" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset3/{{coverImg}}" alt="{{coverImg}}"></div></div>
                 <!-- <form method="post" enctype="multipart/form-data" action="/api/upload"> -->
                 <!-- <input type="file" name="filename">
                 <input type="submit" value="upload"> -->

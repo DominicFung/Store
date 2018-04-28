@@ -17,7 +17,7 @@
                 <button type="button" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="btn btn-default btn-discover" routerLink="/store/{{item._id}}">Discover</button><br>
                 <button type="button" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="btn btn-primary btn-add-cart" (click)="addToCart(item._id)">Add to Cart</button>
             </div>
-            <img *ngIf="item.coverImg" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{item.coverImg}}" alt="{{item.coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
+            <img *ngIf="item.coverImg" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="store-img" src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset3/{{item.coverImg}}" alt="{{item.coverImg}}" onerror="this.onerror=null;this.src='assets/imgs/noImageFound.jpeg';">
             <img *ngIf="!item.coverImg" (mouseenter) ="mouseEnter(item._id)"  (mouseleave) ="mouseLeave(item._id)" class="store-img" src="assets/imgs/noImageFound.jpeg" alt="no Image found!">
         </div>
 
@@ -96,7 +96,7 @@
                 </div>
 
                 <dropzone *ngIf="!coverPic" class="DomStyle" [config]="config" name="photo" [message]="'Click or drag images here'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
-                <div *ngIf="coverPic" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset/{{coverPic}}" alt="{{coverPic}}"></div></div>
+                <div *ngIf="coverPic" class="dz-preview"><div class="dz-image" ><img src="https://s3.ca-central-1.amazonaws.com/dominicfung-storeasset3/{{coverPic}}" alt="{{coverPic}}"></div></div>
                 <!-- <form method="post" enctype="multipart/form-data" action="/api/upload"> -->
                 <!-- <input type="file" name="filename">
                 <input type="submit" value="upload"> -->

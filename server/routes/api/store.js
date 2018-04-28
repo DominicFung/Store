@@ -4,10 +4,8 @@ var mongojs = require("mongojs")
 var db = mongojs("mongodb://localhost:27017/ShennyStore")
 
 const AWS = require('aws-sdk')
-const BUCKET_NAME = 'dominicfung-storeasset'
-const AWS_ACCESS_KEY_ID = "AKIAIX74VVOX45P5RB2A"
-const AWS_SECRET_ACCESS_KEY = "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"
-AWS.config.update({accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY})
+const domS3 = require("../../../privValues")
+AWS.config.update({accessKeyId: domS3.AWS_ACCESS_KEY_ID, secretAccessKey: domS3.AWS_SECRET_ACCESS_KEY})
 
 var passport = require("passport")
 

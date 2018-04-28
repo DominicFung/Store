@@ -4,17 +4,35 @@ var mongojs = require("mongojs")
 var db = mongojs("mongodb://localhost:27017/ShennyStore")
 
 const fileUpload = require("express-fileupload")
+const domS3 = require("../../../privValues")
 const AWS = require('aws-sdk')
-const BUCKET_NAME = 'dominicfung-storeasset'
-const AWS_ACCESS_KEY_ID = "AKIAIX74VVOX45P5RB2A"
-const AWS_SECRET_ACCESS_KEY = "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"
-AWS.config.update({accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY})
+
+AWS.config.update({accessKeyId: domS3.AWS_ACCESS_KEY_ID, secretAccessKey: domS3.AWS_SECRET_ACCESS_KEY})
+var s3 = new AWS.S3()
+
+//test
+var params = {
+    Bucket: domS3.BUCKET_NAME,
+    Key: 'mykey.txt',
+    Body: "HelloWorld"
+};
+s3.putObject(params, function (err, res) {
+    if (err) {
+        console.log("Error uploading data: ", err);
+    } else {
+        console.log("Successfully uploaded data to myBucket/myKey");
+    }
+});
+
+
 const uuid = require('uuid/v1')
 
 var passport = require("passport")
 
 // upload
 router.post("/", [fileUpload(), authenticationMiddleware()], function(req, res) {
+
+    console.log(AWS_ACCESS_KEY_ID+" "+AWS_SECRET_ACCESS_KEY);
     
     if (!req.files)
         return res.status(400).send('No files were uploaded.')
@@ -22,8 +40,7 @@ router.post("/", [fileUpload(), authenticationMiddleware()], function(req, res) 
     for(file in req.files){
         var randFileName = uuid()+".jpeg"
 
-        var s3 = new AWS.S3()
-        params = {Bucket: BUCKET_NAME, Key: randFileName, Body: req.files[file].data, ACL: 'public-read'}
+        params = {Bucket: domS3.BUCKET_NAME, Key: randFileName, Body: req.files[file].data, ACL: 'public-read'}
         s3.putObject(params, function(err, data){
             if(err){ 
                 console.log("could not upload file '"+ file +"' error: "+err)
@@ -55,7 +72,7 @@ router.post("/", [fileUpload(), authenticationMiddleware()], function(req, res) 
 router.delete("/:filename", authenticationMiddleware(), function(req, res) {
     
     var s3 = new AWS.S3()
-    params = {Bucket: BUCKET_NAME, Key: req.params.filename}
+    params = {Bucket: domS3.BUCKET_NAME, Key: req.params.filename}
     s3.deleteObject(params, function(err, data){
         if (err){
             console.log("could not delete file '"+ req.params.filename +"' error: "+err)
