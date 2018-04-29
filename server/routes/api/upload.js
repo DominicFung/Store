@@ -31,8 +31,6 @@ var passport = require("passport")
 
 // upload
 router.post("/", [fileUpload(), authenticationMiddleware()], function(req, res) {
-
-    console.log(AWS_ACCESS_KEY_ID+" "+AWS_SECRET_ACCESS_KEY);
     
     if (!req.files)
         return res.status(400).send('No files were uploaded.')
