@@ -73,7 +73,7 @@ router.delete("/:id", authenticationMiddleware(), function(req, res, next) {
         else if (item) {
             if (item.coverImg) {
                 var s3 = new AWS.S3()
-                params = {Bucket: BUCKET_NAME, Key: item.coverImg}
+                params = {Bucket: domS3.BUCKET_NAME, Key: item.coverImg}
                 s3.deleteObject(params, function(err, data){
                     if (err){
                         console.log("could not delete file '"+ item.coverImg +"' error: "+err)
@@ -85,7 +85,7 @@ router.delete("/:id", authenticationMiddleware(), function(req, res, next) {
     
             for( img in item.imgs ) {
                 var s3 = new AWS.S3()
-                params = {Bucket: BUCKET_NAME, Key: img}
+                params = {Bucket: domS3.BUCKET_NAME, Key: img}
                 s3.deleteObject(params, function(err, data){
                     if (err){
                         console.log("could not delete file '"+ img +"' error: "+err)
